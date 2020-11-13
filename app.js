@@ -1,15 +1,16 @@
 const URL = 'https://dog.ceo/api/breeds/image/random'
 
+const image = document.querySelector('.image')
 
 function fetchRandomDogs(url) {
-    let data = []
+    let imageUrl = ''
     fetch(url)
         .then(response => response.json())
         .then(json => {
-            data = json
-            console.log(data.message)
-            return data.message
+            imageUrl = json.message
+            const innerImage = document.createElement('img')
+            innerImage.src = imageUrl
+            image.appendChild(innerImage)
         })
 }
-
 fetchRandomDogs(URL)
